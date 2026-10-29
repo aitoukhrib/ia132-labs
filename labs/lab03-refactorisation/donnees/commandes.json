@@ -1,0 +1,124 @@
+[
+ {
+  "id": "A1",
+  "statut": "payee",
+  "poids": 1.5,
+  "lignes": [
+   {
+    "prix": 19.99,
+    "qte": 2
+   }
+  ]
+ },
+ {
+  "id": "A2",
+  "statut": "payee",
+  "poids": 6,
+  "lignes": [
+   {
+    "prix": 89.5,
+    "qte": 1
+   },
+   {
+    "prix": 12.25,
+    "qte": 4
+   }
+  ]
+ },
+ {
+  "id": "A3",
+  "statut": "payee",
+  "poids": 14,
+  "lignes": [
+   {
+    "prix": 249.99,
+    "qte": 3
+   }
+  ]
+ },
+ {
+  "id": "A4",
+  "statut": "annulee",
+  "poids": 3,
+  "lignes": [
+   {
+    "prix": 10,
+    "qte": 1
+   }
+  ]
+ },
+ {
+  "id": "A5",
+  "statut": "payee",
+  "poids": 0,
+  "lignes": [
+   {
+    "prix": 10,
+    "qte": 1
+   }
+  ]
+ },
+ {
+  "id": "A6",
+  "statut": "en_attente",
+  "poids": 2,
+  "lignes": [
+   {
+    "prix": 100,
+    "qte": 1
+   }
+  ]
+ },
+ {
+  "id": "A7",
+  "statut": "payee",
+  "poids": 10,
+  "lignes": [
+   {
+    "prix": 500,
+    "qte": 1
+   },
+   {
+    "prix": 0.01,
+    "qte": 1
+   }
+  ]
+ },
+ {
+  "id": "A8",
+  "statut": "payee",
+  "poids": 2.01,
+  "lignes": [
+   {
+    "prix": 33.33,
+    "qte": 3
+   }
+  ]
+ },
+ {
+  "id": "A9",
+  "statut": "payee",
+  "poids": 25.4,
+  "lignes": [
+   {
+    "prix": 45.6,
+    "qte": 7
+   },
+   {
+    "prix": 3.15,
+    "qte": 10
+   }
+  ]
+ },
+ {
+  "id": "A10",
+  "statut": "payee",
+  "poids": -1,
+  "lignes": [
+   {
+    "prix": 1,
+    "qte": 1
+   }
+  ]
+ }
+]

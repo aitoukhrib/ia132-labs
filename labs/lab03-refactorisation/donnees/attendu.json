@@ -1,0 +1,354 @@
+{
+ "QC-standard": [
+  {
+   "id": "A1",
+   "total": 47.98,
+   "livraison": 8,
+   "priorite": "basse"
+  },
+  {
+   "id": "A2",
+   "total": 153.5,
+   "livraison": 15,
+   "priorite": "normale"
+  },
+  {
+   "id": "A3",
+   "total": 770.97,
+   "livraison": 21.0,
+   "priorite": "haute"
+  },
+  {
+   "id": "A6",
+   "total": 108,
+   "livraison": 8,
+   "priorite": "basse"
+  },
+  {
+   "id": "A7",
+   "total": 515.01,
+   "livraison": 15,
+   "priorite": "haute"
+  },
+  {
+   "id": "A8",
+   "total": 114.99,
+   "livraison": 15,
+   "priorite": "basse"
+  },
+  {
+   "id": "A9",
+   "total": 388.8,
+   "livraison": 38.1,
+   "priorite": "normale"
+  }
+ ],
+ "QC-premium": [
+  {
+   "id": "A1",
+   "total": 43.98,
+   "livraison": 4.0,
+   "priorite": "basse"
+  },
+  {
+   "id": "A2",
+   "total": 138.5,
+   "livraison": 0,
+   "priorite": "normale"
+  },
+  {
+   "id": "A3",
+   "total": 749.97,
+   "livraison": 0,
+   "priorite": "haute"
+  },
+  {
+   "id": "A6",
+   "total": 104.0,
+   "livraison": 4.0,
+   "priorite": "basse"
+  },
+  {
+   "id": "A7",
+   "total": 500.01,
+   "livraison": 0,
+   "priorite": "haute"
+  },
+  {
+   "id": "A8",
+   "total": 107.49,
+   "livraison": 7.5,
+   "priorite": "basse"
+  },
+  {
+   "id": "A9",
+   "total": 350.7,
+   "livraison": 0,
+   "priorite": "normale"
+  }
+ ],
+ "ON-standard": [
+  {
+   "id": "A1",
+   "total": 49.98,
+   "livraison": 10,
+   "priorite": "basse"
+  },
+  {
+   "id": "A2",
+   "total": 156.5,
+   "livraison": 18,
+   "priorite": "normale"
+  },
+  {
+   "id": "A3",
+   "total": 774.97,
+   "livraison": 25.0,
+   "priorite": "haute"
+  },
+  {
+   "id": "A6",
+   "total": 110,
+   "livraison": 10,
+   "priorite": "basse"
+  },
+  {
+   "id": "A7",
+   "total": 518.01,
+   "livraison": 18,
+   "priorite": "haute"
+  },
+  {
+   "id": "A8",
+   "total": 117.99,
+   "livraison": 18,
+   "priorite": "basse"
+  },
+  {
+   "id": "A9",
+   "total": 395.65,
+   "livraison": 44.95,
+   "priorite": "normale"
+  }
+ ],
+ "ON-premium": [
+  {
+   "id": "A1",
+   "total": 44.98,
+   "livraison": 5.0,
+   "priorite": "basse"
+  },
+  {
+   "id": "A2",
+   "total": 138.5,
+   "livraison": 0,
+   "priorite": "normale"
+  },
+  {
+   "id": "A3",
+   "total": 749.97,
+   "livraison": 0,
+   "priorite": "haute"
+  },
+  {
+   "id": "A6",
+   "total": 105.0,
+   "livraison": 5.0,
+   "priorite": "basse"
+  },
+  {
+   "id": "A7",
+   "total": 500.01,
+   "livraison": 0,
+   "priorite": "haute"
+  },
+  {
+   "id": "A8",
+   "total": 108.99,
+   "livraison": 9.0,
+   "priorite": "basse"
+  },
+  {
+   "id": "A9",
+   "total": 350.7,
+   "livraison": 0,
+   "priorite": "normale"
+  }
+ ],
+ "BC-standard": [
+  {
+   "id": "A1",
+   "total": 53.98,
+   "livraison": 14,
+   "priorite": "basse"
+  },
+  {
+   "id": "A2",
+   "total": 163.5,
+   "livraison": 25,
+   "priorite": "normale"
+  },
+  {
+   "id": "A3",
+   "total": 784.97,
+   "livraison": 35.0,
+   "priorite": "haute"
+  },
+  {
+   "id": "A6",
+   "total": 114,
+   "livraison": 14,
+   "priorite": "basse"
+  },
+  {
+   "id": "A7",
+   "total": 525.01,
+   "livraison": 25,
+   "priorite": "haute"
+  },
+  {
+   "id": "A8",
+   "total": 124.99,
+   "livraison": 25,
+   "priorite": "basse"
+  },
+  {
+   "id": "A9",
+   "total": 414.2,
+   "livraison": 63.5,
+   "priorite": "normale"
+  }
+ ],
+ "BC-premium": [
+  {
+   "id": "A1",
+   "total": 46.98,
+   "livraison": 7.0,
+   "priorite": "basse"
+  },
+  {
+   "id": "A2",
+   "total": 138.5,
+   "livraison": 0,
+   "priorite": "normale"
+  },
+  {
+   "id": "A3",
+   "total": 749.97,
+   "livraison": 0,
+   "priorite": "haute"
+  },
+  {
+   "id": "A6",
+   "total": 107.0,
+   "livraison": 7.0,
+   "priorite": "basse"
+  },
+  {
+   "id": "A7",
+   "total": 500.01,
+   "livraison": 0,
+   "priorite": "haute"
+  },
+  {
+   "id": "A8",
+   "total": 112.49,
+   "livraison": 12.5,
+   "priorite": "basse"
+  },
+  {
+   "id": "A9",
+   "total": 350.7,
+   "livraison": 0,
+   "priorite": "normale"
+  }
+ ],
+ "NB-standard": [
+  {
+   "id": "A1",
+   "total": 53.98,
+   "livraison": 14,
+   "priorite": "basse"
+  },
+  {
+   "id": "A2",
+   "total": 163.5,
+   "livraison": 25,
+   "priorite": "normale"
+  },
+  {
+   "id": "A3",
+   "total": 784.97,
+   "livraison": 35.0,
+   "priorite": "haute"
+  },
+  {
+   "id": "A6",
+   "total": 114,
+   "livraison": 14,
+   "priorite": "basse"
+  },
+  {
+   "id": "A7",
+   "total": 525.01,
+   "livraison": 25,
+   "priorite": "haute"
+  },
+  {
+   "id": "A8",
+   "total": 124.99,
+   "livraison": 25,
+   "priorite": "basse"
+  },
+  {
+   "id": "A9",
+   "total": 414.2,
+   "livraison": 63.5,
+   "priorite": "normale"
+  }
+ ],
+ "NB-premium": [
+  {
+   "id": "A1",
+   "total": 46.98,
+   "livraison": 7.0,
+   "priorite": "basse"
+  },
+  {
+   "id": "A2",
+   "total": 138.5,
+   "livraison": 0,
+   "priorite": "normale"
+  },
+  {
+   "id": "A3",
+   "total": 749.97,
+   "livraison": 0,
+   "priorite": "haute"
+  },
+  {
+   "id": "A6",
+   "total": 107.0,
+   "livraison": 7.0,
+   "priorite": "basse"
+  },
+  {
+   "id": "A7",
+   "total": 500.01,
+   "livraison": 0,
+   "priorite": "haute"
+  },
+  {
+   "id": "A8",
+   "total": 112.49,
+   "livraison": 12.5,
+   "priorite": "basse"
+  },
+  {
+   "id": "A9",
+   "total": 350.7,
+   "livraison": 0,
+   "priorite": "normale"
+  }
+ ]
+}

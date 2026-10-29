@@ -1,0 +1,4 @@
+# Outils des labs IA132 — Python 3.10 ou plus récent
+pytest>=8
+pytest-cov>=5
+ruff>=0.6

@@ -1,0 +1,34 @@
+{
+  "name": "ia132-labs",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Labs de la formation IA132 — IA pour développeurs : code assisté et programmation intelligente",
+  "type": "module",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "test": "node --disable-warning=ExperimentalWarning --test \"labs/**/typescript/**/*.test.ts\"",
+    "test:lab00": "node --test \"labs/lab00-mise-en-route/typescript/*.test.ts\"",
+    "test:lab01": "node --test \"labs/lab01-decouverte/typescript/*.test.ts\"",
+    "test:lab02": "node --test \"labs/lab02-generation/typescript/*.test.ts\"",
+    "test:lab03": "node --test \"labs/lab03-refactorisation/typescript/*.test.ts\"",
+    "test:lab04": "node --test \"labs/lab04-debogage/typescript/*.test.ts\"",
+    "test:lab05": "node --test \"labs/lab05-performance/typescript/*.test.ts\"",
+    "bench:lab05": "node labs/lab05-performance/typescript/bench.ts",
+    "test:lab06": "node --test \"labs/lab06-documentation/typescript/*.test.ts\"",
+    "test:lab07": "node --disable-warning=ExperimentalWarning --test \"labs/lab07-revue/typescript/*.test.ts\"",
+    "test:lab08": "node --test \"labs/lab08-tests/typescript/*.test.ts\"",
+    "cov:lab08": "node --test --experimental-test-coverage \"labs/lab08-tests/typescript/*.test.ts\"",
+    "test:lab09": "node --test \"labs/lab09-ci/typescript/*.test.ts\"",
+    "api:lab09": "node labs/lab09-ci/typescript/api.ts",
+    "test:lab10": "node --test \"labs/lab10-architecture/typescript/*.test.ts\"",
+    "test:lab11": "node --test \"labs/lab11-projet-final/typescript/**/*.test.ts\"",
+    "taches": "node labs/lab11-projet-final/typescript/taches/cli.ts",
+    "typecheck": "tsc -p ."
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "^5.9.0"
+  }
+}

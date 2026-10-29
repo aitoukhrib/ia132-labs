@@ -1,0 +1,24 @@
+# Pipeline CI à compléter — copiez ce fichier dans .github/workflows/ci.yml
+# Les critères d'acceptation sont dans labs/lab09-ci/test_workflow.py.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  # TODO 1 : lancer aussi le pipeline sur chaque pull request
+
+jobs:
+  python:
+    runs-on: ubuntu-latest
+    # TODO 2 : matrice sur 2 versions de Python (ex. 3.11 et 3.13)
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          # TODO 3 : activer le cache pip
+      - run: pip install -r requirements-dev.txt
+      # TODO 4 : lint avec ruff sur labs/lab09-ci
+      # TODO 5 : tests du lab 09 avec couverture, en échec sous 80 %
+
+  # TODO 6 : un second job « typescript » : setup-node (Node 22) puis node --test sur le lab 09

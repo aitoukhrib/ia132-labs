@@ -1,0 +1,26 @@
+[project]
+name = "ia132-labs"
+version = "1.0.0"
+description = "Labs de la formation IA132 — IA pour développeurs : code assisté et programmation intelligente"
+requires-python = ">=3.10"
+
+[tool.pytest.ini_options]
+# Chaque lab se lance séparément : pytest labs/lab02-generation
+addopts = "-q"
+
+[tool.ruff]
+line-length = 130
+target-version = "py310"
+
+[tool.ruff.lint]
+# E/F : erreurs de base · N : nommage PEP 8 · B : pièges courants · S : sécurité · C90 : complexité
+select = ["E", "F", "N", "B", "S", "C90"]
+ignore = ["S101", "N818"]  # assert normal dans les tests ; exceptions nommées en français
+
+[tool.ruff.lint.per-file-ignores]
+# Les tests et les outils des labs appellent de vrais serveurs locaux et utilisent des noms courts.
+"**/test_*.py" = ["S", "E741"]
+"**/{charge,mutants,bench,verifier_env}.py" = ["S"]
+
+[tool.ruff.lint.mccabe]
+max-complexity = 8

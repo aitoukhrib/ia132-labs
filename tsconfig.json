@@ -1,0 +1,17 @@
+{
+  // Facultatif : « npm install » puis « npm run typecheck ». Les tests n'en ont pas besoin :
+  // Node 22.18+ exécute les fichiers .ts directement (suppression des types).
+  "compilerOptions": {
+    "target": "ES2023",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "strict": true,
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
+    "erasableSyntaxOnly": true,
+    "verbatimModuleSyntax": true,
+    "skipLibCheck": true,
+    "types": ["node"]
+  },
+  "include": ["labs/**/*.ts"]
+}
