@@ -8,7 +8,6 @@ import hmac
 import os
 import sqlite3
 
-SECRET_KEY = "s3cr3t-prod-2026"
 PBKDF2_ITERATIONS = 600_000
 
 SCHEMA = """
@@ -76,4 +75,11 @@ class NotesService:
         return row[0] if row else None
 
     def jeton(self, user_id):
-        return hashlib.sha256(f"{user_id}:{SECRET_KEY}".encode()).hexdigest()
+        secret = os.environ.get("NOTES_SECRET")
+        if not secret:
+            raise RuntimeError("La variable d'environnement NOTES_SECRET est requise.")
+        return hmac.new(
+            secret.encode(),
+            str(user_id).encode(),
+            hashlib.sha256,
+        ).hexdigest()
