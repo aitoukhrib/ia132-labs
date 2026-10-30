@@ -1,5 +1,8 @@
 """Commandes de la ligne de commande du gestionnaire de tâches."""
 
+import csv
+import io
+import json
 from pathlib import Path
 
 from taches.depot import Depot
@@ -108,6 +111,37 @@ def _en_retard(arguments: list[str], depot: Depot) -> tuple[int, str]:
     return 0, "\n".join(tache.formater() for tache in taches)
 
 
+def _exporter(arguments: list[str], depot: Depot) -> tuple[int, str]:
+    if len(arguments) != 2 or arguments[0] != "--format":
+        raise ValueError("utilisation : exporter --format json|csv")
+    format_export = arguments[1]
+    taches = depot.lister(toutes=True)
+    if format_export == "json":
+        contenu = json.dumps(
+            [tache.vers_dict() for tache in taches],
+            ensure_ascii=False,
+        )
+        return 0, contenu
+    if format_export != "csv":
+        raise ValueError("format invalide : json ou csv attendu")
+    sortie = io.StringIO(newline="")
+    champs = ["id", "titre", "priorite", "echeance", "etiquettes", "terminee"]
+    redacteur = csv.writer(sortie, lineterminator="\n")
+    redacteur.writerow(champs)
+    for tache in taches:
+        redacteur.writerow(
+            [
+                tache.id,
+                tache.titre,
+                tache.priorite,
+                tache.echeance.isoformat() if tache.echeance else "",
+                ";".join(tache.etiquettes),
+                "oui" if tache.terminee else "non",
+            ]
+        )
+    return 0, sortie.getvalue().rstrip("\n")
+
+
 def _terminer_ou_supprimer(
     commande: str,
     arguments: list[str],
@@ -131,6 +165,8 @@ def _executer(commande: str, arguments: list[str], depot: Depot) -> tuple[int, s
         return _lister(arguments, depot)
     if commande == "en-retard":
         return _en_retard(arguments, depot)
+    if commande == "exporter":
+        return _exporter(arguments, depot)
     if commande in {"terminer", "supprimer"}:
         return _terminer_ou_supprimer(commande, arguments, depot)
     return 2, f"Erreur : commande inconnue : {commande}"
