@@ -99,6 +99,15 @@ def _lister(arguments: list[str], depot: Depot) -> tuple[int, str]:
     return 0, "\n".join(tache.formater() for tache in taches)
 
 
+def _en_retard(arguments: list[str], depot: Depot) -> tuple[int, str]:
+    if len(arguments) != 2 or arguments[0] != "--aujourdhui":
+        raise ValueError("utilisation : en-retard --aujourdhui AAAA-MM-JJ")
+    taches = depot.en_retard(arguments[1])
+    if not taches:
+        return 0, "Aucune tâche."
+    return 0, "\n".join(tache.formater() for tache in taches)
+
+
 def _terminer_ou_supprimer(
     commande: str,
     arguments: list[str],
@@ -120,6 +129,8 @@ def _executer(commande: str, arguments: list[str], depot: Depot) -> tuple[int, s
         return _ajouter(arguments, depot)
     if commande == "lister":
         return _lister(arguments, depot)
+    if commande == "en-retard":
+        return _en_retard(arguments, depot)
     if commande in {"terminer", "supprimer"}:
         return _terminer_ou_supprimer(commande, arguments, depot)
     return 2, f"Erreur : commande inconnue : {commande}"

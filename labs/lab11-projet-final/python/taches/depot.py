@@ -99,3 +99,17 @@ class Depot:
                 self._enregistrer()
                 return True
         return False
+
+    def en_retard(self, aujourdhui: str) -> list[Tache]:
+        """Retourne les tâches actives dont l’échéance précède la date donnée."""
+        reference = valider_date(aujourdhui)
+        if reference is None:
+            raise ValueError("date du jour requise")
+        resultat = [
+            tache
+            for tache in self.taches
+            if not tache.terminee
+            and tache.echeance is not None
+            and tache.echeance < reference
+        ]
+        return trier_taches(resultat)
