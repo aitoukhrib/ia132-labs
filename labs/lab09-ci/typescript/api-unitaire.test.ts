@@ -1,7 +1,7 @@
 // Tests unitaires existants (verts). Les tests d'intégration sont à écrire : integration.test.ts.
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { Depot, LONGUEUR_CODE, nouveauCode, urlValide } from './api.ts';
+import { Depot, nouveauCode, urlValide } from './api.ts';
 
 test('URL valides', () => {
   for (const u of ['https://technologia.com', 'http://exemple.ca/a?b=1']) assert.ok(urlValide(u), u);
@@ -14,7 +14,7 @@ test('URL invalides', () => {
 });
 
 test('code de 6 caractères alphanumériques', () => {
-  assert.match(nouveauCode(), new RegExp(`^[A-Za-z0-9]{${LONGUEUR_CODE}}$`));
+  assert.match(nouveauCode(), /^[A-Za-z0-9]{6}$/);
 });
 
 test('le dépôt compte les visites', () => {

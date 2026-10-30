@@ -9,7 +9,7 @@ import { randomInt } from 'node:crypto';
 import { createServer, type IncomingMessage, type Server, type ServerResponse } from 'node:http';
 
 const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-export const LONGUEUR_CODE = 6;
+export const LONGUEUR_CODE = 5;
 const TAILLE_MAX_URL = 2_048;
 
 export function urlValide(url: unknown): url is string {
