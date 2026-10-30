@@ -8,16 +8,106 @@
 
 Développer **de bout en bout** un petit outil avec un agent de codage — plan, code, tests, documentation, CI, pull request revue — en appliquant le flux de travail d’une équipe : instructions de projet, petits commits, revue humaine.
 
-## Point de départ
+## Contenu du lab
 
 - `SPEC.md` : `taches`, un gestionnaire de tâches en ligne de commande (6 commandes, règles, codes de sortie).
-- `test_acceptation.py` / `acceptation.test.ts` : 16 (Python) ou 11 (TypeScript) tests d’acceptation, tous rouges. **Ne les modifiez pas.**
-- `taches/cli.py` / `taches/cli.ts` : la signature de `main()`, rien d’autre.
-- `AGENTS.md` : un gabarit d’instructions pour l’agent, à compléter.
+- `python/test_acceptation.py` / `typescript/acceptation.test.ts` : tests d’acceptation à préserver, complétés par des tests unitaires dédiés.
+- `python/taches/` : implémentation Python répartie entre modèle, dépôt JSON et CLI.
+- `AGENTS.md` : conventions, commandes et règles spécifiques à l’agent du projet.
 
 ```bash
 pytest labs/lab11-projet-final          # ou : npm run test:lab11
 cd labs/lab11-projet-final/python && python -m taches lister     # ou : npm run taches -- lister
+```
+
+## Utiliser l’outil Python `taches`
+
+### Installation
+
+Python 3.10 ou plus récent suffit ; aucune dépendance externe n’est requise.
+Depuis la racine du dépôt, lancez les commandes dans
+`labs/lab11-projet-final/python`. Les tâches sont conservées dans `taches.json`
+dans le répertoire courant.
+
+```bash
+cd labs/lab11-projet-final/python
+python -m taches lister
+```
+
+### Exemples des commandes
+
+Les exemples ci-dessous s’exécutent dans l’ordre et utilisent une date fixe pour
+garder les résultats prévisibles.
+
+**Ajouter** une tâche ; priorité normale par défaut et étiquettes répétables :
+
+```bash
+python -m taches ajouter "Préparer la démo" --priorite haute --echeance 2026-10-29 --etiquette ia --etiquette formation
+# Tâche 1 ajoutée : Préparer la démo
+python -m taches ajouter "Envoyer le compte rendu" --echeance 2026-11-05
+# Tâche 2 ajoutée : Envoyer le compte rendu
+```
+
+**Lister** toutes les tâches actives ou appliquer les filtres :
+
+```bash
+python -m taches lister
+# [ ] 1  haute    2026-10-29  Préparer la démo  #ia #formation
+# [ ] 2  normale  2026-11-05  Envoyer le compte rendu
+python -m taches lister --etiquette ia
+python -m taches lister --priorite haute
+python -m taches lister --toutes
+```
+
+**Terminer** une tâche la masque de la liste par défaut ; `--toutes` l’inclut :
+
+```bash
+python -m taches terminer 2
+# Tâche 2 terminée
+python -m taches lister --toutes
+# affiche également la tâche 2 avec [x]
+```
+
+**Supprimer** une tâche ; son identifiant ne sera jamais réutilisé :
+
+```bash
+python -m taches supprimer 2
+# Tâche 2 supprimée
+```
+
+**Repérer les tâches en retard** (échéance strictement antérieure au jour donné) :
+
+```bash
+python -m taches en-retard --aujourdhui 2026-10-30
+# [ ] 1  haute    2026-10-29  Préparer la démo  #ia #formation
+```
+
+**Exporter** toutes les tâches présentes, terminées ou non, triées comme la liste :
+
+```bash
+python -m taches exporter --format json
+# [{"id": 1, "titre": "Préparer la démo", "priorite": "haute", "echeance": "2026-10-29", "etiquettes": ["ia", "formation"], "terminee": false}]
+python -m taches exporter --format csv
+# id,titre,priorite,echeance,etiquettes,terminee
+# 1,Préparer la démo,haute,2026-10-29,ia;formation,non
+```
+
+### Codes de sortie
+
+| Code | Signification | Exemple |
+| ---: | --- | --- |
+| `0` | Succès | Ajout, liste ou export |
+| `1` | Tâche introuvable | `python -m taches terminer 42` |
+| `2` | Commande ou argument invalide | Priorité/date invalide, titre vide ou commande inconnue |
+
+`main(argv, fichier)` retourne ce code et le texte de sortie ; le module
+`python -m taches` affiche le texte puis termine avec le code retourné.
+
+Depuis la racine du dépôt, exécutez les tests et le lint :
+
+```bash
+python -m pytest labs/lab11-projet-final
+python -m ruff check labs/lab11-projet-final/python
 ```
 
 ## Étapes (points d’étape toutes les 15 minutes)
