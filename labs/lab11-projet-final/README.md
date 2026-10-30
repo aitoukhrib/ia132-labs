@@ -8,12 +8,12 @@
 
 Développer **de bout en bout** un petit outil avec un agent de codage — plan, code, tests, documentation, CI, pull request revue — en appliquant le flux de travail d’une équipe : instructions de projet, petits commits, revue humaine.
 
-## Point de départ
+## Contenu du lab
 
 - `SPEC.md` : `taches`, un gestionnaire de tâches en ligne de commande (6 commandes, règles, codes de sortie).
-- `test_acceptation.py` / `acceptation.test.ts` : 16 (Python) ou 11 (TypeScript) tests d’acceptation, tous rouges. **Ne les modifiez pas.**
-- `taches/cli.py` / `taches/cli.ts` : la signature de `main()`, rien d’autre.
-- `AGENTS.md` : un gabarit d’instructions pour l’agent, à compléter.
+- `python/test_acceptation.py` / `typescript/acceptation.test.ts` : tests d’acceptation à préserver, complétés par des tests unitaires dédiés.
+- `python/taches/` : implémentation Python répartie entre modèle, dépôt JSON et CLI.
+- `AGENTS.md` : conventions, commandes et règles spécifiques à l’agent du projet.
 
 ```bash
 pytest labs/lab11-projet-final          # ou : npm run test:lab11
