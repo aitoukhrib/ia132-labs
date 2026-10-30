@@ -81,3 +81,21 @@ class Depot:
             and (priorite is None or tache.priorite == priorite)
         ]
         return trier_taches(resultat)
+
+    def terminer(self, identifiant: int) -> Tache | None:
+        """Marque une tâche comme terminée, ou renvoie None si elle est absente."""
+        tache = next((element for element in self.taches if element.id == identifiant), None)
+        if tache is None:
+            return None
+        tache.terminee = True
+        self._enregistrer()
+        return tache
+
+    def supprimer(self, identifiant: int) -> bool:
+        """Supprime une tâche sans réutiliser son identifiant."""
+        for index, tache in enumerate(self.taches):
+            if tache.id == identifiant:
+                del self.taches[index]
+                self._enregistrer()
+                return True
+        return False

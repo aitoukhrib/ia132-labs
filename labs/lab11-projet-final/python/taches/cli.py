@@ -47,6 +47,18 @@ def _lire_option(
     return nom, arguments[index + 1], index + 2
 
 
+def _lire_identifiant(arguments: list[str]) -> int:
+    if len(arguments) != 1:
+        raise ValueError("un identifiant de tâche est requis")
+    try:
+        identifiant = int(arguments[0])
+    except ValueError as erreur:
+        raise ValueError("identifiant invalide") from erreur
+    if identifiant < 1:
+        raise ValueError("identifiant invalide")
+    return identifiant
+
+
 def _options_lister(arguments: list[str]) -> tuple[bool, str | None, str | None]:
     toutes = False
     etiquette = None
@@ -73,6 +85,46 @@ def _options_lister(arguments: list[str]) -> tuple[bool, str | None, str | None]
     return toutes, etiquette, priorite
 
 
+def _ajouter(arguments: list[str], depot: Depot) -> tuple[int, str]:
+    titre, priorite, echeance, etiquettes = _options_ajouter(arguments)
+    tache = depot.ajouter(titre, priorite, echeance, etiquettes)
+    return 0, f"Tâche {tache.id} ajoutée : {tache.titre}"
+
+
+def _lister(arguments: list[str], depot: Depot) -> tuple[int, str]:
+    toutes, etiquette, priorite = _options_lister(arguments)
+    taches = depot.lister(toutes, etiquette, priorite)
+    if not taches:
+        return 0, "Aucune tâche."
+    return 0, "\n".join(tache.formater() for tache in taches)
+
+
+def _terminer_ou_supprimer(
+    commande: str,
+    arguments: list[str],
+    depot: Depot,
+) -> tuple[int, str]:
+    identifiant = _lire_identifiant(arguments)
+    if commande == "terminer":
+        tache = depot.terminer(identifiant)
+        if tache is None:
+            return 1, f"Erreur : tâche {identifiant} introuvable"
+        return 0, f"Tâche {identifiant} terminée"
+    if not depot.supprimer(identifiant):
+        return 1, f"Erreur : tâche {identifiant} introuvable"
+    return 0, f"Tâche {identifiant} supprimée"
+
+
+def _executer(commande: str, arguments: list[str], depot: Depot) -> tuple[int, str]:
+    if commande == "ajouter":
+        return _ajouter(arguments, depot)
+    if commande == "lister":
+        return _lister(arguments, depot)
+    if commande in {"terminer", "supprimer"}:
+        return _terminer_ou_supprimer(commande, arguments, depot)
+    return 2, f"Erreur : commande inconnue : {commande}"
+
+
 def main(argv: list[str], fichier: Path) -> tuple[int, str]:
     """Exécute une commande et retourne (code de sortie, texte à afficher)."""
     if not argv:
@@ -80,16 +132,6 @@ def main(argv: list[str], fichier: Path) -> tuple[int, str]:
     commande, *arguments = argv
     try:
         depot = Depot(fichier)
-        if commande == "ajouter":
-            titre, priorite, echeance, etiquettes = _options_ajouter(arguments)
-            tache = depot.ajouter(titre, priorite, echeance, etiquettes)
-            return 0, f"Tâche {tache.id} ajoutée : {tache.titre}"
-        if commande == "lister":
-            toutes, etiquette, priorite = _options_lister(arguments)
-            taches = depot.lister(toutes, etiquette, priorite)
-            if not taches:
-                return 0, "Aucune tâche."
-            return 0, "\n".join(tache.formater() for tache in taches)
-        return 2, f"Erreur : commande inconnue : {commande}"
+        return _executer(commande, arguments, depot)
     except ValueError as erreur:
         return 2, f"Erreur : {erreur}"
