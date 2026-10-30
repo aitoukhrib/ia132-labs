@@ -28,7 +28,6 @@ Depuis la racine du dépôt :
 
 - Tests d’acceptation : `python -m pytest labs/lab11-projet-final/python/test_acceptation.py`
 - Tests du lab : `python -m pytest labs/lab11-projet-final`
-- Tests et couverture (si pytest-cov est installé) : `python -m pytest labs/lab11-projet-final/python --cov=labs/lab11-projet-final/python/taches --cov-branch`
 - Lint : `python -m ruff check labs/lab11-projet-final/python`
 - Lancer l’outil : `python -m taches <commande>` depuis `labs/lab11-projet-final/python`
 
