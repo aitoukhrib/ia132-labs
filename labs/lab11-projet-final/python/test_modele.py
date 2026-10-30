@@ -34,6 +34,20 @@ def test_le_tri_priorise_puis_trie_par_echeance_et_identifiant():
     assert [tache.id for tache in trier_taches(taches)] == [1, 2, 5, 3, 4]
 
 
+def test_le_format_de_liste_respecte_l_alignement_et_les_etiquettes():
+    tache = Tache(
+        3,
+        "Préparer la démo",
+        priorite="haute",
+        echeance=date(2026, 11, 5),
+        etiquettes=["formation", "ia"],
+    )
+
+    assert tache.formater() == (
+        "[ ] 3  haute    2026-11-05  Préparer la démo  #formation #ia"
+    )
+
+
 def test_le_modele_rejette_une_priorite_inconnue():
     with pytest.raises(ValueError, match="priorité invalide"):
         Tache(1, "Valide", priorite="urgente")

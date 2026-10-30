@@ -64,7 +64,7 @@ class Tache:
         """Formate la tâche sur une ligne pour les commandes de liste."""
         etat = "x" if self.terminee else " "
         echeance = self.echeance.isoformat() if self.echeance else "—"
-        ligne = f"[{etat}] {self.id}  {self.priorite:<9} {echeance:<10}  {self.titre}"
+        ligne = f"[{etat}] {self.id}  {self.priorite:<9}{echeance:<10}  {self.titre}"
         if self.etiquettes:
             ligne += "  " + " ".join(f"#{etiquette}" for etiquette in self.etiquettes)
         return ligne

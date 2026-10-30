@@ -52,8 +52,8 @@ python -m taches ajouter "Envoyer le compte rendu" --echeance 2026-11-05
 
 ```bash
 python -m taches lister
-# [ ] 1  haute     2026-10-29  Préparer la démo  #ia #formation
-# [ ] 2  normale   2026-11-05  Envoyer le compte rendu
+# [ ] 1  haute    2026-10-29  Préparer la démo  #ia #formation
+# [ ] 2  normale  2026-11-05  Envoyer le compte rendu
 python -m taches lister --etiquette ia
 python -m taches lister --priorite haute
 python -m taches lister --toutes
@@ -79,7 +79,7 @@ python -m taches supprimer 2
 
 ```bash
 python -m taches en-retard --aujourdhui 2026-10-30
-# [ ] 1  haute     2026-10-29  Préparer la démo  #ia #formation
+# [ ] 1  haute    2026-10-29  Préparer la démo  #ia #formation
 ```
 
 **Exporter** toutes les tâches présentes, terminées ou non, triées comme la liste :
