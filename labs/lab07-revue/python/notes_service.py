@@ -4,9 +4,12 @@ Votre mission : la REVUE de cette PR, avec l'aide de l'IA (voir README).
 """
 
 import hashlib
+import hmac
+import os
 import sqlite3
 
 SECRET_KEY = "s3cr3t-prod-2026"
+PBKDF2_ITERATIONS = 600_000
 
 SCHEMA = """
 create table if not exists users (id integer primary key, email text unique, password text);
@@ -19,8 +22,31 @@ class NotesService:
         self.bd = sqlite3.connect(chemin_bd)
         self.bd.executescript(SCHEMA)
 
+    @staticmethod
+    def _creer_empreinte(mot_de_passe):
+        sel = os.urandom(16)
+        empreinte = hashlib.pbkdf2_hmac(
+            "sha256", mot_de_passe.encode(), sel, PBKDF2_ITERATIONS
+        )
+        return f"pbkdf2_sha256${PBKDF2_ITERATIONS}${sel.hex()}${empreinte.hex()}"
+
+    @staticmethod
+    def _verifier_mot_de_passe(mot_de_passe, stockage):
+        try:
+            algorithme, iterations, sel_hex, empreinte_hex = stockage.split("$")
+            if algorithme != "pbkdf2_sha256" or int(iterations) != PBKDF2_ITERATIONS:
+                return False
+            sel = bytes.fromhex(sel_hex)
+            empreinte_attendue = bytes.fromhex(empreinte_hex)
+        except (ValueError, TypeError):
+            return False
+        empreinte = hashlib.pbkdf2_hmac(
+            "sha256", mot_de_passe.encode(), sel, PBKDF2_ITERATIONS
+        )
+        return hmac.compare_digest(empreinte, empreinte_attendue)
+
     def inscrire(self, email, mot_de_passe):
-        h = hashlib.md5(mot_de_passe.encode()).hexdigest()
+        h = self._creer_empreinte(mot_de_passe)
         cur = self.bd.execute(
             "insert into users (email, password) values (?, ?)",
             (email, h),
@@ -29,12 +55,13 @@ class NotesService:
         return cur.lastrowid
 
     def connecter(self, email, mot_de_passe):
-        h = hashlib.md5(mot_de_passe.encode()).hexdigest()
         row = self.bd.execute(
-            "select id from users where email = ? and password = ?",
-            (email, h),
+            "select id, password from users where email = ?",
+            (email,),
         ).fetchone()
-        return row[0] if row else None
+        if row and self._verifier_mot_de_passe(mot_de_passe, row[1]):
+            return row[0]
+        return None
 
     def ajouter_note(self, user_id, contenu):
         cur = self.bd.execute("insert into notes (owner, contenu) values (?, ?)", (user_id, contenu))
